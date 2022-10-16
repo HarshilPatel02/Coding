@@ -1,0 +1,54 @@
+class Solution:
+    # def len_three(self, nums, final_list):
+    #     if sum(nums) == 0:
+    #         final_list.append(nums)
+    #         return final_list
+    #     return final_list
+
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        final_list = set()
+        n, p, z = [], [], []
+        for num in nums:
+            if num == 0:
+                z.append(num)
+            elif num > 0:
+                p.append(num)
+            else:
+                n.append(num)
+
+        N, P = set(n), set(p)
+
+        # If zeroes are repeating more than two times
+        if len(z) >= 3:
+            final_list.add(tuple(0, 0, 0))
+
+        # one negative, one positive & zero
+        for num in N:
+            if -num in P and len(z) != 0:
+                final_list.add(tuple(sorted([num, 0, -num])))
+
+        # Two negative and one positive
+        for i in range(len(n)):
+            for j in range(i+1, len(n)):
+                check = -1*(n[i]+n[j])
+
+                if check in P:
+                    final_list.add(tuple(sorted([n[i], n[j], check])))
+
+        # Two positive and one negative
+        for i in range(len(p)):
+            for j in range(i+1, len(p)):
+                check = -1*(p[i]+p[j])
+                if check in N:
+                    final_list.add(tuple(sorted([p[i], p[j], check])))
+
+        list_to_set = []
+        for i in final_list:
+            list_to_set.append(list(i))
+
+        return list_to_set
+
+
+nums = [-1, 0, 1, 2, -1, -4]
+objt = Solution()
+print(objt.threeSum(nums))

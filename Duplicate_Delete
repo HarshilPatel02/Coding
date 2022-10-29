@@ -1,0 +1,30 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+        temp = head
+        f_set = set()
+        
+        while temp:
+            f_set.add(temp.val)
+            temp = temp.next
+            
+        f_list = list(f_set)
+        
+        f_list.sort()
+        
+        final = ListNode(0)
+        result = final
+        
+        for i in f_list:
+            result.next = ListNode(i)
+            result = result.next
+            
+        return final.next
+    
+# Runtime: 96 ms, faster than 17.04% of Python3 online submissions for Remove Duplicates from Sorted List.
+# Memory Usage: 14 MB, less than 29.97% of Python3 online submissions for Remove Duplicates from Sorted List.

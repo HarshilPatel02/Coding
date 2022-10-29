@@ -19,3 +19,6 @@ class Solution:
             return True
         else:
             return False
+
+#        Runtime: 54 ms, faster than 90.55% of Python3 online submissions for Valid Anagram.
+# Memory Usage: 15.1 MB, less than 11.75% of Python3 online submissions for Valid Anagram.

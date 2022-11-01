@@ -1,0 +1,26 @@
+class Solution:
+    def tempArea(self, height: list[int]):
+
+        if height[0] > height[-1]:
+            ht = height[-1]
+        else:
+            ht = height[0]
+
+        return ht * (len(height)-1)
+
+    def maxArea(self, height: list[int]) -> int:
+        length = len(height)
+        emp = 0
+
+        for i in range(length, 1, -1):
+            ini = 0
+            while i + ini <= length:
+                temp = self.tempArea(height[ini:i + ini])
+                if temp > emp:
+                    emp = temp
+                ini += 1
+
+        return emp
+
+
+objt = Solution()
